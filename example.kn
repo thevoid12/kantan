@@ -1,0 +1,21 @@
+name is "Manikandan".
+age is 27.
+
+a is 10.
+b is 20.
+c is a + b.
+
+print "Value of A => {a}".
+print "Value of B => {b}".
+print "Value of C = A + B => {c}".
+
+if c [is equal to] 30 {
+    print "Hellooo!! C is 30".
+}
+
+repeat 3 times {
+    print "OUTER LOOP".
+    repeat 4 times {
+      print "INNER LOOP".
+    }
+}
