@@ -38,7 +38,7 @@ pub enum Token {
     RightBrace,
 }
 
-pub fn tokenize(line: String) -> Vec<Token> {
+pub fn tokenize(line: String,is_long_notes: bool) ->(Vec<Token>,bool) {
     let mut tokens: Vec<Token> = Vec::new();
     let characters: Vec<char> = line.chars().collect();
     let mut i = 0;
@@ -157,8 +157,13 @@ pub fn tokenize(line: String) -> Vec<Token> {
         }
 
         let word: String = characters[start..i].iter().collect();
-
-        if word == "is" {
+        if word=="notes:" && !is_long_notes{
+            return (tokens,false);
+        }else if word=="start_notes:"{
+            return (tokens,true);
+        }else if word=="end_notes" && is_long_notes{
+            return (Vec::new(),false);
+        }else if word == "is" {
             tokens.push(Token::Is);
         } else if word == "if" {
             tokens.push(Token::If);
@@ -172,8 +177,22 @@ pub fn tokenize(line: String) -> Vec<Token> {
             tokens.push(Token::Identifier(word));
         }
     }
+    
+    if i>0{
+        append_dot(&mut tokens, characters[i-1]);
+    }
 
-    tokens
+    if is_long_notes {
+        (Vec::new(),true)
+    } else {
+        (tokens,false)
+    }
+}
+
+fn append_dot(tokens: &mut Vec<Token>, last_char: char) {
+    if last_char!='{' && last_char!='}' && last_char!='.' {
+        tokens.push(Token::Dot);
+    }
 }
 
 fn parse_operator(operator: String) -> Operator {

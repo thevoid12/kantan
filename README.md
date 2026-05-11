@@ -17,43 +17,39 @@ The goal of creating kantan is to help kids(LEARN MYSELF RUST :) to get into the
 - Arithmetic operations
 - Conditional statements(if alone right now)
 - Loop
-- Period as delimeter unlike typical semicolon
+- Period as delimeter unlike typical semicolon (optional)
 - String interpolation
 - Nested Loops
+- Comments (single-line and multi-line)
 - Written completely from scratch in Rust(NO AI were harmed)
 
 # Simple Example Program based on kantan
 
 ```kantan
-name is "Manikandan".
-age is 27.
+notes: period is optional in end of the line
+name is "Manikandan"
+age is 27
 
-a is 10.
-b is 20.
+start_notes:
+  you can do arithmetic and print variables using {var}
+end_notes
 
-c is a + b.
+a is 10
+b is 20
+c is a + b
 
-print "Value of A => {a}".
-print "Value of B => {b}".
-print "Value of C => {c}".
+print "Value of A => {a}"
+print "Value of B => {b}"
+print "Value of C => {c}"
 
 if c [is equal to] 30 {
-    print "C is 30".
+    print "C is 30"
 }
 
-countdown is 3.
-
 repeat 3 times {
-
-    print "Outer Loop => {countdown}".
-
-    countdown is countdown - 1.
-
+    print "Outer Loop"
     repeat 2 times {
-
-        print "Inner Loop => {countdown}".
-
-        countdown is countdown - 1.
+        print "Inner Loop"
     }
 }
 ```
@@ -64,15 +60,15 @@ repeat 3 times {
 ## Variable Assignment
 
 ```kantan
-name is "Kantan". # string
-age is 10. # number
+name is "Kantan" # string
+age is 10 # number
 ```
 
 ## Print
 
 ```kantan
-print "Hello World". # Normal
-print "Name => {name}". # String interpolation
+print "Hello World" # Normal
+print "Name => {name}" # String interpolation
 ```
 
 ## Arithmetic Operations
@@ -111,6 +107,27 @@ repeat 5 times {
     print "Hello".
 }
 ```
+
+## Comments
+
+```kantan
+notes: this is a single line comment
+
+start_notes:
+  this is a
+  multi-line comment
+end_notes
+```
+
+Inline single-line comment:
+
+```kantan
+if age [is greater than] 18 { notes: check adult
+    print "Adult"
+}
+```
+
+> **Constraint:** `start_notes:` must be on its own line. Code and `start_notes:` on the same line will discard the code  unlike other languages like python which throws error.
 
 # Implementation Details
 

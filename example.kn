@@ -1,21 +1,28 @@
-name is "Manikandan".
-age is 27.
+notes: this is a single line comment comment
+start_notes: 
+this is a multiline commnent
+easy to add more than 1 line command 
+end_notes
+name is "Manikandan" 
+age is 27
+print "there is no full stop"
+print "{name} is {age} years old"
+a is 10
+b is 20
+c is a + b
+start_notes:  you can print a variable by using {variable_name}
+this is a easy and simple syntax end_notes
+print "Value of A => {a}"
+print "Value of B => {b}"
+print "Value of C = A + B => {c}"
 
-a is 10.
-b is 20.
-c is a + b.
-
-print "Value of A => {a}".
-print "Value of B => {b}".
-print "Value of C = A + B => {c}".
-
-if c [is equal to] 30 {
-    print "Hellooo!! C is 30".
+if c [is equal to] 30 { notes:this is now you use if statement in this language
+    print "Hellooo!! C is 30"
 }
 
 repeat 3 times {
-    print "OUTER LOOP".
+    print "OUTER LOOP"
     repeat 4 times {
-      print "INNER LOOP".
+      print "INNER LOOP"
     }
 }
