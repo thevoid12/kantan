@@ -42,3 +42,6 @@ build-all: \
 clean:
 	cargo clean
 	rm -rf $(BIN_DIR)
+
+run_local:
+	cargo run example.kn

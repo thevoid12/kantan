@@ -157,13 +157,26 @@ pub fn tokenize(line: String,is_long_notes: bool) ->(Vec<Token>,bool) {
         }
 
         let word: String = characters[start..i].iter().collect();
-        if word=="notes:" && !is_long_notes{
-            return (tokens,false);
-        }else if word=="start_notes:"{
-            return (tokens,true);
-        }else if word=="end_notes" && is_long_notes{
-            return (Vec::new(),false);
-        }else if word == "is" {
+        if word == "notes:" && !is_long_notes {
+            let mut j = i;
+            while j < characters.len() && characters[j] == ' ' {
+                j += 1;
+            }
+            if j < characters.len() && characters[j] == '{' {
+                j += 1;
+                while j < characters.len() && characters[j] != '}' {
+                    j += 1;
+                }
+                if j < characters.len() && characters[j] == '}' {
+                    i = j + 1;
+                    continue;
+                } else {
+                    return (tokens, true);
+                }
+            } else {
+                return (tokens, false);
+            }
+        } else if word == "is" {
             tokens.push(Token::Is);
         } else if word == "if" {
             tokens.push(Token::If);

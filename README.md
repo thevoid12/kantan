@@ -30,9 +30,9 @@ notes: period is optional in end of the line
 name is "Manikandan"
 age is 27
 
-start_notes:
+notes: {
   you can do arithmetic and print variables using {var}
-end_notes
+}
 
 a is 10
 b is 20
@@ -113,21 +113,22 @@ repeat 5 times {
 ```kantan
 notes: this is a single line comment
 
-start_notes:
+notes: {
   this is a
   multi-line comment
-end_notes
+}
 ```
 
-Inline single-line comment:
+Inline block comment (any spaces allowed between `:` and `{`):
 
 ```kantan
+notes:   { this is hidden } x is 10
+
 if age [is greater than] 18 { notes: check adult
     print "Adult"
 }
 ```
 
-> **Constraint:** `start_notes:` must be on its own line. Code and `start_notes:` on the same line will discard the code  unlike other languages like python which throws error.
 
 # Implementation Details
 

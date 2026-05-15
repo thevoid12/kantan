@@ -15,11 +15,15 @@ fn process_file(file_content: String) {
         if trimmed_line.is_empty() {
             continue;
         }
-        let tokens;
-        (tokens, is_long_notes) = tokenizer::tokenize(trimmed_line.to_string(), is_long_notes);
         if is_long_notes {
+            if trimmed_line == "}" {
+                is_long_notes = false;
+            }
             continue;
         }
+
+        let tokens;
+        (tokens, is_long_notes) = tokenizer::tokenize(trimmed_line.to_string(), is_long_notes);
 
         if !tokens.is_empty() {
             total_tokens.push(tokens);

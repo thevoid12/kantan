@@ -1,36 +1,41 @@
 notes: --- TEST 1: Strings vs Comments ---
 notes: The lexer should NOT treat these as comments because they are inside quotes.
 print "He left some notes: on the table."
-print "Type start_notes: to begin your story."
-print "Always remember your end_notes!"
+print "Type notes: { to begin your story."
+print "Always remember to close with }!"
 
 notes: --- TEST 2: Same-line block comment ---
 notes: The lexer should skip the comment but successfully read 'd is 100'.
-start_notes: quick secret end_notes d is 100
+notes:    { quick secret } d is 100
 
 notes: --- TEST 3: Comment keywords inside other comments ---
-notes: The single line comment should ignore the 'end_notes' keyword below.
-notes: remember to type end_notes later!
+notes: The single line comment should ignore the closing brace below.
+notes: remember to type } later!
 
 
-start_notes: 
+notes: {
   I love using notes: it is so much fun!
   The multi-line comment should ignore the 'notes:' keyword above.
-end_notes
+}
 
 
-notes: --- TEST 4: Keyword Boundaries ---
+notes: --- TEST 4: Brace inside multiline comment ---
+notes: The '{' on the next line should NOT become a LeftBrace token.
+notes:{
+{
+}
+
+notes: --- TEST 5: Keyword Boundaries ---
 notes: These should be parsed as variables, not comments.
 my_notes: is 50
-my_start_notes: is 100
 
 
-notes: --- TEST 5:Error flow ---
-notes: the first 'end_notes' will close the comment, and the next line will cause an error.
-start_notes:
+notes: --- TEST 6: correct flow ---
+notes: the first '}' will close the comment, and the next line will cause an error.
+notes: {
    We are hiding this whole block
-   start_notes: 
-     this was an older note 
-   end_notes
-   is this line still hidden? 
-end_notes
+    {
+     this was an older note
+   
+   is this line still hidden?
+}
