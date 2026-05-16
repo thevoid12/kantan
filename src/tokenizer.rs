@@ -39,6 +39,15 @@ pub enum Token {
 }
 
 pub fn tokenize(line: String,is_long_notes: bool) ->(Vec<Token>,bool) {
+    let line = line.trim().to_string();
+    if is_long_notes {
+        return if line == "}" {
+            (Vec::new(), false)
+        } else {
+            (Vec::new(), true)
+        };
+    }
+
     let mut tokens: Vec<Token> = Vec::new();
     let characters: Vec<char> = line.chars().collect();
     let mut i = 0;
@@ -191,21 +200,12 @@ pub fn tokenize(line: String,is_long_notes: bool) ->(Vec<Token>,bool) {
         }
     }
     
-    if i>0{
-        append_dot(&mut tokens, characters[i-1]);
-    }
-
-    if is_long_notes {
-        (Vec::new(),true)
-    } else {
-        (tokens,false)
-    }
-}
-
-fn append_dot(tokens: &mut Vec<Token>, last_char: char) {
-    if last_char!='{' && last_char!='}' && last_char!='.' {
+    if i > 0 {
+        let last = characters[i-1];
+        if last == '{' || last == '}' || last == '.' { return (tokens, false); }
         tokens.push(Token::Dot);
     }
+    (tokens, false)
 }
 
 fn parse_operator(operator: String) -> Operator {
